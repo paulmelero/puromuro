@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/icon',
     '@nuxt/image',
+    '@nuxtjs/tailwindcss',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',
-})
+  css: ['~/assets/css/main.css'],
+});

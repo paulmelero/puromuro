@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  /* Brand Colors — from Puro Muro identity manual + DESIGN.md */
+  --color-navy: #182c4b;
+  --color-navy-light: #2a4a6b;
+  --color-brick: #c15626;
+  --color-orange: #f0782f;
+  --color-terracotta: #9c4b2b;
+  --color-yellow: #f5c542;
+  --color-blue: #5bc0eb;
+  --color-warm-white: #f5f0eb;
+  --color-warm-200: #e8e0d8;
+  --color-warm-300: #d4c9be;
+
+  /* Typography — Montserrat headlines, Hazelnuts body */
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "TT Hazelnuts Trial", "Montserrat", sans-serif;
+}
+
+/* DaisyUI custom theme */
+@plugin "daisyui/theme" {
+  name: "puromuro";
+  default: true;
+
+  /* Base surface */
+  --color-base-100: #f5f0eb;
+  --color-base-200: #e8e0d8;
+  --color-base-300: #d4c9be;
+  --color-base-content: #1a1a1a;
+
+  /* Primary — Deep Navy */
+  --color-primary: #182c4b;
+  --color-primary-content: #ffffff;
+
+  /* Secondary — Clay/Brick */
+  --color-secondary: #c15626;
+  --color-secondary-content: #ffffff;
+
+  /* Accent — Vivid Orange (CTA) */
+  --color-accent: #f0782f;
+  --color-accent-content: #ffffff;
+
+  /* Neutral */
+  --color-neutral: #1a1a1a;
+  --color-neutral-content: #f5f0eb;
+
+  /* Semantic */
+  --color-info: #5bc0eb;
+  --color-info-content: #182c4b;
+  --color-warning: #f5c542;
+  --color-warning-content: #182c4b;
+  --color-error: #9c4b2b;
+  --color-error-content: #ffffff;
+  --color-success: #4a7c59;
+  --color-success-content: #ffffff;
+
+  /* Rounded corners — slightly rough, not too polished */
+  --radius-btn: 0.375rem;
+  --radius-box: 0.5rem;
+}
+
+/* Global typography */
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}

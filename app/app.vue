@@ -1,4 +1,8 @@
 <template>
   <NuxtRouteAnnouncer />
-  <NuxtPage />
+  <SiteHeader />
+  <main>
+    <NuxtPage />
+  </main>
+  <SiteFooter />
 </template>
