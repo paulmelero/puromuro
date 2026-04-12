@@ -1,54 +1,78 @@
 <script setup lang="ts">
 const services = [
   {
-    icon: 'lucide:brush',
+    num: '01',
     title: 'Pintura Mural',
-    description: 'Murales artísticos de gran formato para fachadas, interiores y espacios comerciales.',
+    description: 'Murales artísticos de gran formato para fachadas, interiores y espacios comerciales. Cada muro es un proyecto único adaptado a su contexto.',
   },
   {
-    icon: 'lucide:spray-can',
+    num: '02',
     title: 'Graffiti',
-    description: 'Arte urbano profesional que transforma paredes en lienzos con identidad propia.',
+    description: 'Arte urbano profesional que transforma paredes en lienzos con identidad propia. Del boceto a la pared, con técnica y criterio.',
   },
   {
-    icon: 'lucide:palette',
-    title: 'Decoracion',
-    description: 'Pintura decorativa artesanal para locales, oficinas y espacios residenciales.',
+    num: '03',
+    title: 'Decoración',
+    description: 'Pintura decorativa artesanal para locales, oficinas y espacios residenciales. Soluciones visuales que respetan el carácter del espacio.',
   },
   {
-    icon: 'lucide:hammer',
-    title: 'Restauracion',
-    description: 'Recuperación y restauración de murales y pinturas murales existentes.',
+    num: '04',
+    title: 'Restauración',
+    description: 'Recuperación y restauración de murales y pinturas murales existentes. Devolvemos la vida a obras que el tiempo ha desgastado.',
   },
 ]
 </script>
 
 <template>
-  <section id="servicios" class="bg-primary py-20 md:py-28 relative">
-    <div class="container mx-auto px-6">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold text-primary-content text-center mb-4">
-        SERVICIOS
-      </h2>
-      <p class="text-primary-content/60 text-center mb-12 max-w-lg mx-auto">
-        Ofrecemos soluciones completas de pintura mural y arte urbano.
-      </p>
+  <section id="servicios" class="bg-warm-white py-20 md:py-32">
+    <div class="px-6 md:px-10">
+      <!-- Section marker -->
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="label-mono text-ink/40">03</span>
+        <div class="h-[2px] w-12 bg-ink/20" aria-hidden="true" />
+        <span class="label-mono text-ink/40">Servicios</span>
+      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 mb-16">
+        <div class="lg:col-span-5">
+          <h2 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-ink leading-[0.9]">
+            LO QUE<br>HACEMOS
+          </h2>
+        </div>
+        <div class="lg:col-span-5 lg:col-start-8 flex items-end">
+          <p class="text-ink/50 max-w-sm">
+            Ofrecemos soluciones completas de pintura mural y arte urbano.
+            Cada proyecto empieza escuchando.
+          </p>
+        </div>
+      </div>
+
+      <!-- Services list — editorial, numbered -->
+      <div class="border-t-[3px] border-ink">
         <div
           v-for="service in services"
-          :key="service.title"
-          class="card bg-white/5 border border-primary-content/10 hover:border-accent/50 transition-colors"
+          :key="service.num"
+          class="group border-b-[3px] border-ink"
         >
-          <div class="card-body items-center text-center">
-            <div class="w-14 h-14 rounded-lg bg-accent/20 flex items-center justify-center mb-4">
-              <Icon :name="service.icon" size="28" class="text-accent" />
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 items-baseline">
+            <!-- Number -->
+            <div class="md:col-span-1">
+              <span class="label-mono text-brick">{{ service.num }}</span>
             </div>
-            <h3 class="card-title font-heading text-lg text-primary-content">
-              {{ service.title }}
-            </h3>
-            <p class="text-primary-content/60 text-sm">
-              {{ service.description }}
-            </p>
+
+            <!-- Title -->
+            <div class="md:col-span-4">
+              <h3 class="font-heading text-2xl md:text-3xl font-black text-ink uppercase leading-tight group-hover:text-brick transition-colors">
+                {{ service.title }}
+              </h3>
+            </div>
+
+            <!-- Description -->
+            <div class="md:col-span-6 md:col-start-7">
+              <p class="text-ink/60 leading-relaxed">
+                {{ service.description }}
+              </p>
+            </div>
           </div>
         </div>
       </div>

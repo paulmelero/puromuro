@@ -32,107 +32,119 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <section id="contacto" class="bg-primary py-20 md:py-28 relative overflow-hidden">
-    <!-- Paint drip decoration top -->
-    <div class="absolute -top-1 left-0 right-0" aria-hidden="true">
-      <svg
-        class="w-full h-8 md:h-12 rotate-180"
-        viewBox="0 0 1200 50"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 50V20C100 20 100 40 200 40C300 40 300 10 400 10C500 10 500 35 600 35C700 35 700 15 800 15C900 15 900 45 1000 45C1100 45 1200 25 1200 25V50Z"
-          fill="var(--color-warm-white, #f5f0eb)"
-        />
-      </svg>
-    </div>
-
-    <div class="container mx-auto px-6 max-w-2xl">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold text-primary-content text-center mb-4">
-        CONTACTO
-      </h2>
-      <p class="text-primary-content/60 text-center mb-12 max-w-lg mx-auto">
-        ¿Tienes un proyecto en mente? Cuéntanos tu idea y te responderemos lo antes posible.
-      </p>
-
-      <!-- Success message -->
-      <div v-if="status === 'success'" class="alert bg-success text-success-content mb-8">
-        <Icon name="lucide:check-circle" size="20" />
-        <span>Mensaje enviado correctamente. ¡Gracias por contactarnos!</span>
+  <section id="contacto" class="bg-navy py-20 md:py-32">
+    <div class="px-6 md:px-10">
+      <!-- Section marker -->
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="label-mono text-warm-white/40">04</span>
+        <div class="h-[2px] w-12 bg-warm-white/20" aria-hidden="true" />
+        <span class="label-mono text-warm-white/40">Contacto</span>
       </div>
 
-      <!-- Error message -->
-      <div v-if="status === 'error'" class="alert bg-error text-error-content mb-8">
-        <Icon name="lucide:alert-circle" size="20" />
-        <span>{{ errorMessage }}</span>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0">
+        <!-- Left: heading + info -->
+        <div class="lg:col-span-5 lg:pr-16">
+          <h2 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-warm-white leading-[0.9] mb-8">
+            HABLEMOS
+          </h2>
+          <div class="h-1 w-20 bg-brick mb-8" aria-hidden="true" />
+          <p class="text-warm-white/50 mb-10 max-w-sm">
+            ¿Tienes un proyecto en mente? Cuéntanos tu idea y te responderemos lo antes posible.
+          </p>
+
+          <!-- Contact details -->
+          <div class="space-y-4 text-warm-white/60">
+            <div>
+              <span class="label-mono text-warm-white/30 block mb-1">Email</span>
+              <a href="mailto:info@puromuro.com" class="text-warm-white hover:text-orange transition-colors no-underline">
+                info@puromuro.com
+              </a>
+            </div>
+            <div>
+              <span class="label-mono text-warm-white/30 block mb-1">Social</span>
+              <a href="#" class="text-warm-white hover:text-orange transition-colors no-underline">
+                @puromuro
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="lg:col-span-6 lg:col-start-7">
+          <!-- Success message -->
+          <div v-if="status === 'success'" class="border-2 border-warm-white/20 p-6 mb-8">
+            <p class="font-heading text-sm font-bold tracking-[0.1em] text-warm-white uppercase">
+              Mensaje enviado correctamente
+            </p>
+            <p class="text-warm-white/50 text-sm mt-2">¡Gracias por contactarnos!</p>
+          </div>
+
+          <!-- Error message -->
+          <div v-if="status === 'error'" class="border-2 border-brick p-6 mb-8">
+            <p class="font-heading text-sm font-bold tracking-[0.1em] text-brick uppercase">
+              Error
+            </p>
+            <p class="text-warm-white/50 text-sm mt-2">{{ errorMessage }}</p>
+          </div>
+
+          <form @submit.prevent="handleSubmit" class="space-y-8">
+            <div>
+              <label for="nombre" class="label-mono text-warm-white/40 block mb-3">Nombre *</label>
+              <input
+                id="nombre"
+                v-model="form.nombre"
+                type="text"
+                required
+                class="w-full bg-transparent border-0 border-b-[3px] border-warm-white/20 text-warm-white text-lg py-3 px-0 placeholder:text-warm-white/20 focus:border-brick focus:outline-none transition-colors"
+                placeholder="Tu nombre"
+              >
+            </div>
+
+            <div>
+              <label for="email" class="label-mono text-warm-white/40 block mb-3">Email *</label>
+              <input
+                id="email"
+                v-model="form.email"
+                type="email"
+                required
+                class="w-full bg-transparent border-0 border-b-[3px] border-warm-white/20 text-warm-white text-lg py-3 px-0 placeholder:text-warm-white/20 focus:border-brick focus:outline-none transition-colors"
+                placeholder="tu@email.com"
+              >
+            </div>
+
+            <div>
+              <label for="telefono" class="label-mono text-warm-white/40 block mb-3">Teléfono</label>
+              <input
+                id="telefono"
+                v-model="form.telefono"
+                type="tel"
+                class="w-full bg-transparent border-0 border-b-[3px] border-warm-white/20 text-warm-white text-lg py-3 px-0 placeholder:text-warm-white/20 focus:border-brick focus:outline-none transition-colors"
+                placeholder="+34 600 000 000"
+              >
+            </div>
+
+            <div>
+              <label for="mensaje" class="label-mono text-warm-white/40 block mb-3">Mensaje *</label>
+              <textarea
+                id="mensaje"
+                v-model="form.mensaje"
+                required
+                rows="4"
+                class="w-full bg-transparent border-0 border-b-[3px] border-warm-white/20 text-warm-white text-lg py-3 px-0 placeholder:text-warm-white/20 focus:border-brick focus:outline-none transition-colors resize-none"
+                placeholder="Cuéntanos tu proyecto..."
+              />
+            </div>
+
+            <button
+              type="submit"
+              class="inline-block border-2 border-warm-white text-warm-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-10 py-4 hover:bg-warm-white hover:text-navy transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              :disabled="status === 'sending'"
+            >
+              {{ status === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
+            </button>
+          </form>
+        </div>
       </div>
-
-      <form @submit.prevent="handleSubmit" class="space-y-6">
-        <div class="form-control">
-          <label class="label" for="nombre">
-            <span class="label-text text-primary-content/80 font-heading text-sm tracking-wider">NOMBRE *</span>
-          </label>
-          <input
-            id="nombre"
-            v-model="form.nombre"
-            type="text"
-            required
-            class="input input-bordered bg-white/10 border-primary-content/20 text-primary-content placeholder:text-primary-content/30 focus:border-accent focus:outline-accent"
-            placeholder="Tu nombre"
-          >
-        </div>
-
-        <div class="form-control">
-          <label class="label" for="email">
-            <span class="label-text text-primary-content/80 font-heading text-sm tracking-wider">EMAIL *</span>
-          </label>
-          <input
-            id="email"
-            v-model="form.email"
-            type="email"
-            required
-            class="input input-bordered bg-white/10 border-primary-content/20 text-primary-content placeholder:text-primary-content/30 focus:border-accent focus:outline-accent"
-            placeholder="tu@email.com"
-          >
-        </div>
-
-        <div class="form-control">
-          <label class="label" for="telefono">
-            <span class="label-text text-primary-content/80 font-heading text-sm tracking-wider">TELEFONO</span>
-          </label>
-          <input
-            id="telefono"
-            v-model="form.telefono"
-            type="tel"
-            class="input input-bordered bg-white/10 border-primary-content/20 text-primary-content placeholder:text-primary-content/30 focus:border-accent focus:outline-accent"
-            placeholder="+34 600 000 000"
-          >
-        </div>
-
-        <div class="form-control">
-          <label class="label" for="mensaje">
-            <span class="label-text text-primary-content/80 font-heading text-sm tracking-wider">MENSAJE *</span>
-          </label>
-          <textarea
-            id="mensaje"
-            v-model="form.mensaje"
-            required
-            rows="5"
-            class="textarea textarea-bordered bg-white/10 border-primary-content/20 text-primary-content placeholder:text-primary-content/30 focus:border-accent focus:outline-accent"
-            placeholder="Cuéntanos tu proyecto..."
-          />
-        </div>
-
-        <button
-          type="submit"
-          class="btn btn-accent btn-block font-heading text-sm tracking-widest uppercase"
-          :disabled="status === 'sending'"
-        >
-          <span v-if="status === 'sending'" class="loading loading-spinner loading-sm" />
-          {{ status === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
-        </button>
-      </form>
     </div>
   </section>
 </template>

@@ -1,36 +1,29 @@
 <template>
-  <footer class="bg-neutral text-neutral-content py-12">
-    <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+  <footer class="bg-ink border-t-[3px] border-warm-white/15 py-10">
+    <div class="px-6 md:px-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <SiteLogo variant="light" />
 
-        <p class="text-sm text-neutral-content/60">
-          &copy; {{ new Date().getFullYear() }} Puro Muro &mdash; Pintura Mural. Todos los derechos reservados.
-        </p>
-
-        <div class="flex gap-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
           <a
-            href="#"
-            class="btn btn-ghost btn-circle btn-sm text-neutral-content/60 hover:text-accent"
-            aria-label="Instagram"
+            href="https://instagram.com"
+            class="label-mono text-warm-white/40 hover:text-orange transition-colors no-underline"
+            target="_blank"
+            rel="noopener"
           >
-            <Icon name="lucide:instagram" size="20" />
-          </a>
-          <a
-            href="#"
-            class="btn btn-ghost btn-circle btn-sm text-neutral-content/60 hover:text-accent"
-            aria-label="Facebook"
-          >
-            <Icon name="lucide:facebook" size="20" />
+            Instagram
           </a>
           <a
             href="mailto:info@puromuro.com"
-            class="btn btn-ghost btn-circle btn-sm text-neutral-content/60 hover:text-accent"
-            aria-label="Email"
+            class="label-mono text-warm-white/40 hover:text-orange transition-colors no-underline"
           >
-            <Icon name="lucide:mail" size="20" />
+            info@puromuro.com
           </a>
         </div>
+
+        <p class="label-mono text-warm-white/25">
+          &copy; {{ new Date().getFullYear() }} Puro Muro
+        </p>
       </div>
     </div>
   </footer>

@@ -1,78 +1,86 @@
+<script setup lang="ts">
+const heroVisible = ref(false)
+
+onMounted(() => {
+  // Staggered reveal on load
+  setTimeout(() => { heroVisible.value = true }, 100)
+})
+</script>
+
 <template>
-  <section class="relative min-h-screen flex items-center justify-center bg-primary overflow-hidden">
-    <!-- Subtle brick texture overlay -->
-    <div class="absolute inset-0 opacity-5" aria-hidden="true">
-      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="brick" x="0" y="0" width="60" height="30" patternUnits="userSpaceOnUse">
-            <rect width="28" height="13" x="1" y="1" fill="none" stroke="white" stroke-width="0.5" />
-            <rect width="28" height="13" x="31" y="1" fill="none" stroke="white" stroke-width="0.5" />
-            <rect width="28" height="13" x="-14" y="16" fill="none" stroke="white" stroke-width="0.5" />
-            <rect width="28" height="13" x="16" y="16" fill="none" stroke="white" stroke-width="0.5" />
-            <rect width="28" height="13" x="46" y="16" fill="none" stroke="white" stroke-width="0.5" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#brick)" />
-      </svg>
+  <section class="relative min-h-screen flex flex-col justify-end bg-navy overflow-hidden pt-16">
+    <!-- Giant background text — architectural scale -->
+    <div
+      class="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+      aria-hidden="true"
+    >
+      <span
+        class="font-heading font-black text-[28vw] leading-[0.8] text-white/[0.03] tracking-tighter"
+      >
+        MURO
+      </span>
     </div>
 
-    <!-- Content -->
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <!-- Logo text -->
-      <h1 class="font-heading font-black text-primary-content leading-none mb-6">
-        <span class="block text-7xl md:text-9xl tracking-tight">PURO</span>
-        <span class="block text-7xl md:text-9xl tracking-tight">MURO</span>
-      </h1>
+    <!-- Main content -->
+    <div class="relative z-10 px-6 md:px-10 pb-16 md:pb-24">
+      <!-- Section marker -->
+      <div
+        class="mb-8 md:mb-12 transition-all duration-700"
+        :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+      >
+        <span class="label-mono text-warm-white/40">Colectivo de arte urbano</span>
+      </div>
 
-      <!-- Fluid stroke divider -->
-      <svg
-        class="mx-auto my-8 w-64 md:w-96 h-4 text-accent"
-        viewBox="0 0 400 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+      <!-- Title block -->
+      <div class="mb-8 md:mb-12">
+        <h1
+          class="font-heading font-black text-warm-white leading-[0.82] transition-all duration-700 delay-100"
+          :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+        >
+          <span class="block text-[18vw] md:text-[14vw] lg:text-[12vw]">PURO</span>
+          <span class="block text-[18vw] md:text-[14vw] lg:text-[12vw] -mt-[1vw]">MURO</span>
+        </h1>
+      </div>
+
+      <!-- Orange bar — the structural accent -->
+      <div
+        class="h-1.5 md:h-2 bg-brick w-full max-w-md mb-8 md:mb-12 transition-all duration-700 delay-200 origin-left"
+        :class="heroVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'"
         aria-hidden="true"
+      />
+
+      <!-- Tagline + subtitle in a grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-[1fr_2px_1fr] gap-6 md:gap-10 max-w-3xl transition-all duration-700 delay-300"
+        :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
       >
-        <path
-          d="M0 8C40 2 80 14 120 8C160 2 200 14 240 8C280 2 320 14 360 8C380 5 400 8 400 8"
-          stroke="currentColor"
-          stroke-width="3"
-          stroke-linecap="round"
-        />
-      </svg>
+        <p class="font-heading text-lg md:text-2xl font-bold tracking-[0.15em] text-warm-white uppercase">
+          El muro es<br>el origen
+        </p>
 
-      <!-- Tagline -->
-      <p class="font-heading text-lg md:text-2xl tracking-[0.2em] text-primary-content/80 mb-4">
-        EL MURO ES EL ORIGEN
-      </p>
+        <!-- Vertical divider (desktop) -->
+        <div class="hidden md:block bg-warm-white/20" aria-hidden="true" />
 
-      <!-- Subtitle -->
-      <p class="text-primary-content/60 max-w-xl mx-auto mb-10 text-base md:text-lg">
-        Colectivo de artistas especializados en pintura mural, graffiti y arte urbano.
-        Transformamos espacios con arte que cuenta historias.
-      </p>
+        <p class="text-warm-white/50 text-base md:text-lg leading-relaxed max-w-sm">
+          Pintura mural, graffiti y arte urbano. Transformamos espacios con arte que cuenta historias.
+        </p>
+      </div>
 
-      <!-- CTA Button -->
-      <a
-        href="#contacto"
-        class="btn btn-accent btn-lg font-heading text-sm tracking-widest uppercase px-10"
+      <!-- CTA -->
+      <div
+        class="mt-10 md:mt-14 transition-all duration-700 delay-[400ms]"
+        :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
       >
-        Contactanos
-      </a>
+        <a
+          href="#contacto"
+          class="inline-block border-2 border-warm-white text-warm-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 hover:bg-warm-white hover:text-navy transition-colors no-underline"
+        >
+          Háblanos de tu proyecto
+        </a>
+      </div>
     </div>
 
-    <!-- Paint drip decoration -->
-    <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
-      <svg
-        class="w-full h-16 md:h-24"
-        viewBox="0 0 1200 80"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 80V40C50 40 50 20 100 20C150 20 150 35 200 35C250 35 250 10 300 10C350 10 350 45 400 45C450 45 450 15 500 15C550 15 550 30 600 30C650 30 650 5 700 5C750 5 750 50 800 50C850 50 850 25 900 25C950 25 950 40 1000 40C1050 40 1050 20 1100 20C1150 20 1200 35 1200 35V80Z"
-          fill="var(--color-warm-white, #f5f0eb)"
-        />
-      </svg>
-    </div>
+    <!-- Bottom edge — thick orange line -->
+    <div class="h-1.5 bg-brick w-full" aria-hidden="true" />
   </section>
 </template>

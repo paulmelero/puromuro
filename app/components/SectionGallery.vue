@@ -1,41 +1,54 @@
 <script setup lang="ts">
-const placeholders = [
-  { id: 1, aspect: 'aspect-[3/4]', color: 'bg-secondary/20' },
-  { id: 2, aspect: 'aspect-square', color: 'bg-primary/20' },
-  { id: 3, aspect: 'aspect-[4/3]', color: 'bg-accent/20' },
-  { id: 4, aspect: 'aspect-[3/4]', color: 'bg-primary/30' },
-  { id: 5, aspect: 'aspect-square', color: 'bg-secondary/30' },
-  { id: 6, aspect: 'aspect-[4/3]', color: 'bg-accent/15' },
-  { id: 7, aspect: 'aspect-[3/4]', color: 'bg-primary/15' },
-  { id: 8, aspect: 'aspect-square', color: 'bg-secondary/15' },
+const items = [
+  { id: 1, label: 'Mural exterior', location: 'Valencia' },
+  { id: 2, label: 'Fachada comercial', location: 'Madrid' },
+  { id: 3, label: 'Interior restaurante', location: 'Barcelona' },
+  { id: 4, label: 'Graffiti urbano', location: 'Sevilla' },
+  { id: 5, label: 'Mural comunitario', location: 'Bilbao' },
+  { id: 6, label: 'Decoración mural', location: 'Valencia' },
 ]
 </script>
 
 <template>
-  <section id="galeria" class="bg-base-200 py-20 md:py-28">
-    <div class="container mx-auto px-6">
-      <h2 class="font-heading text-3xl md:text-5xl font-bold text-base-content text-center mb-4">
-        GALERIA
+  <section id="galeria" class="bg-ink py-20 md:py-32">
+    <div class="px-6 md:px-10">
+      <!-- Section marker -->
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="label-mono text-warm-white/40">02</span>
+        <div class="h-[2px] w-12 bg-warm-white/20" aria-hidden="true" />
+        <span class="label-mono text-warm-white/40">Galería</span>
+      </div>
+
+      <h2 class="font-heading text-4xl md:text-6xl font-black text-warm-white leading-[0.9] mb-4">
+        TRABAJOS
       </h2>
-      <p class="text-base-content/60 text-center mb-12 max-w-lg mx-auto">
-        Una selección de nuestros trabajos de pintura mural y arte urbano.
+      <p class="text-warm-white/40 mb-12 md:mb-16 max-w-md">
+        Una selección de nuestros proyectos de pintura mural y arte urbano.
       </p>
 
-      <!-- Masonry grid -->
-      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+      <!-- Strict grid — thick borders, no rounding -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t-[3px] border-l-[3px] border-warm-white/15">
         <div
-          v-for="item in placeholders"
+          v-for="item in items"
           :key="item.id"
-          class="break-inside-avoid group cursor-pointer"
+          class="group relative aspect-[4/3] border-b-[3px] border-r-[3px] border-warm-white/15 bg-navy overflow-hidden cursor-pointer"
         >
+          <!-- Placeholder fill — different tones for visual variety -->
           <div
-            :class="[item.aspect, item.color]"
-            class="rounded-lg overflow-hidden relative transition-all duration-300 group-hover:shadow-xl group-hover:scale-[1.02]"
-          >
-            <div class="absolute inset-0 flex items-center justify-center text-base-content/10 group-hover:text-base-content/20 transition-colors">
-              <Icon name="lucide:image" size="48" />
-            </div>
+            class="absolute inset-0 transition-colors duration-300"
+            :class="item.id % 3 === 0 ? 'bg-brick/20 group-hover:bg-brick/35' : item.id % 2 === 0 ? 'bg-navy-light group-hover:bg-navy-light/80' : 'bg-navy group-hover:bg-warm-white/5'"
+          />
+
+          <!-- Overlay info — visible on hover -->
+          <div class="absolute inset-0 flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="label-mono text-warm-white/50 mb-1">{{ item.location }}</span>
+            <span class="font-heading text-sm font-bold text-warm-white uppercase tracking-wide">{{ item.label }}</span>
           </div>
+
+          <!-- Index number -->
+          <span class="absolute top-4 left-5 label-mono text-warm-white/20 group-hover:text-warm-white/40 transition-colors">
+            {{ String(item.id).padStart(2, '0') }}
+          </span>
         </div>
       </div>
     </div>

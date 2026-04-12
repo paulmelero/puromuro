@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const navLinks = [
   { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Galeria', href: '#galeria' },
+  { label: 'Galería', href: '#galeria' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Contacto', href: '#contacto' },
 ]
@@ -10,55 +10,62 @@ const mobileMenuOpen = ref(false)
 </script>
 
 <template>
-  <header class="navbar bg-primary text-primary-content sticky top-0 z-50 shadow-lg">
-    <div class="navbar-start">
-      <SiteLogo variant="light" />
-    </div>
+  <header class="fixed top-0 left-0 right-0 z-50 bg-warm-white border-b-[3px] border-ink">
+    <div class="flex items-center justify-between px-6 md:px-10 h-16">
+      <!-- Logo -->
+      <SiteLogo variant="dark" />
 
-    <!-- Desktop nav -->
-    <nav class="navbar-end hidden lg:flex">
-      <ul class="menu menu-horizontal gap-1">
-        <li v-for="link in navLinks" :key="link.href">
-          <a
-            :href="link.href"
-            class="font-heading text-sm tracking-wider text-primary-content/80 hover:text-accent transition-colors"
-          >
-            {{ link.label }}
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <!-- Desktop nav -->
+      <nav class="hidden lg:block">
+        <ul class="flex items-center gap-0">
+          <li v-for="(link, i) in navLinks" :key="link.href" class="flex items-center">
+            <span v-if="i > 0" class="text-warm-300 mx-4 select-none" aria-hidden="true">/</span>
+            <a
+              :href="link.href"
+              class="font-heading text-xs font-bold tracking-[0.15em] text-ink hover:text-brick transition-colors no-underline uppercase"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-    <!-- Mobile hamburger -->
-    <div class="navbar-end lg:hidden">
+      <!-- Mobile hamburger -->
       <button
-        class="btn btn-ghost btn-square"
+        class="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
         aria-label="Abrir menú"
         @click="mobileMenuOpen = !mobileMenuOpen"
       >
-        <Icon name="lucide:menu" size="24" />
+        <span class="block w-6 h-[3px] bg-ink transition-transform" :class="{ 'rotate-45 translate-y-[8px]': mobileMenuOpen }" />
+        <span class="block w-6 h-[3px] bg-ink transition-opacity" :class="{ 'opacity-0': mobileMenuOpen }" />
+        <span class="block w-6 h-[3px] bg-ink transition-transform" :class="{ '-rotate-45 -translate-y-[8px]': mobileMenuOpen }" />
       </button>
     </div>
 
     <!-- Mobile menu -->
     <Teleport to="body">
-      <Transition name="slide">
+      <Transition name="menu">
         <div
           v-if="mobileMenuOpen"
-          class="fixed inset-0 z-[100] bg-primary flex flex-col items-center justify-center gap-8"
+          class="fixed inset-0 z-[100] bg-navy flex flex-col items-start justify-center pl-10 gap-2"
         >
           <button
-            class="absolute top-4 right-4 btn btn-ghost btn-square text-primary-content"
+            class="absolute top-5 right-6 flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
             aria-label="Cerrar menú"
             @click="mobileMenuOpen = false"
           >
-            <Icon name="lucide:x" size="28" />
+            <span class="block w-6 h-[3px] bg-warm-white rotate-45 translate-y-[4px]" />
+            <span class="block w-6 h-[3px] bg-warm-white -rotate-45 -translate-y-[4px]" />
           </button>
+
+          <!-- Section marker -->
+          <span class="label-mono text-warm-white/40 mb-6">Navegación</span>
+
           <a
             v-for="link in navLinks"
             :key="link.href"
             :href="link.href"
-            class="font-heading text-2xl tracking-widest text-primary-content hover:text-accent transition-colors"
+            class="font-heading text-5xl font-black text-warm-white hover:text-orange transition-colors no-underline uppercase leading-tight"
             @click="mobileMenuOpen = false"
           >
             {{ link.label }}
@@ -70,14 +77,13 @@ const mobileMenuOpen = ref(false)
 </template>
 
 <style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+.menu-enter-active,
+.menu-leave-active {
+  transition: opacity 0.25s ease;
 }
 
-.slide-enter-from,
-.slide-leave-to {
-  transform: translateY(-100%);
+.menu-enter-from,
+.menu-leave-to {
   opacity: 0;
 }
 </style>
