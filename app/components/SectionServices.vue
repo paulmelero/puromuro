@@ -3,24 +3,28 @@ const services = [
   {
     num: '01',
     title: 'Pintura Mural',
-    description: 'Murales artísticos de gran formato para fachadas, interiores y espacios comerciales. Cada muro es un proyecto único adaptado a su contexto.',
+    description:
+      'Murales artísticos de gran formato para fachadas, interiores y espacios comerciales. Cada muro es un proyecto único adaptado a su contexto.',
   },
   {
     num: '02',
     title: 'Graffiti',
-    description: 'Arte urbano profesional que transforma paredes en lienzos con identidad propia. Del boceto a la pared, con técnica y criterio.',
+    description:
+      'Arte urbano profesional que transforma paredes en lienzos con identidad propia. Del boceto a la pared, con técnica y criterio.',
   },
   {
     num: '03',
-    title: 'Decoración',
-    description: 'Pintura decorativa artesanal para locales, oficinas y espacios residenciales. Soluciones visuales que respetan el carácter del espacio.',
+    title: 'Lettering',
+    description:
+      'Lettering profesional para logotipos, señalización y branding. Utilizamos el tradicional arte del lettering para crear identidades visuales únicas.',
   },
   {
     num: '04',
-    title: 'Restauración',
-    description: 'Recuperación y restauración de murales y pinturas murales existentes. Devolvemos la vida a obras que el tiempo ha desgastado.',
+    title: 'Tattoo',
+    description:
+      'Tattoos profesionales para personas que buscan expresar su personalidad con tinta en su piel.',
   },
-]
+];
 </script>
 
 <template>
@@ -33,16 +37,18 @@ const services = [
         <span class="label-mono text-ink/40">Servicios</span>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 mb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 mb-16">
         <div class="lg:col-span-5">
-          <h2 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-ink leading-[0.9]">
-            LO QUE<br>HACEMOS
+          <h2
+            class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-ink leading-[0.9]"
+          >
+            LO QUE<br />HACEMOS
           </h2>
         </div>
-        <div class="lg:col-span-5 lg:col-start-8 flex items-end">
+        <div class="lg:col-span-5 lg:col-start-7 flex items-end">
           <p class="text-ink/50 max-w-sm">
-            Ofrecemos soluciones completas de pintura mural y arte urbano.
-            Cada proyecto empieza escuchando.
+            Ofrecemos soluciones completas de pintura mural y arte urbano. Cada
+            proyecto empieza escuchando.
           </p>
         </div>
       </div>
@@ -54,7 +60,9 @@ const services = [
           :key="service.num"
           class="group border-b-[3px] border-ink"
         >
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 items-baseline">
+          <div
+            class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 items-baseline"
+          >
             <!-- Number -->
             <div class="md:col-span-1">
               <span class="label-mono text-brick">{{ service.num }}</span>
@@ -62,7 +70,9 @@ const services = [
 
             <!-- Title -->
             <div class="md:col-span-4">
-              <h3 class="font-heading text-2xl md:text-3xl font-black text-ink uppercase leading-tight group-hover:text-brick transition-colors">
+              <h3
+                class="font-heading text-2xl md:text-3xl font-black text-ink uppercase leading-tight group-hover:text-brick transition-colors"
+              >
                 {{ service.title }}
               </h3>
             </div>

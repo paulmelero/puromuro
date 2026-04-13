@@ -15,7 +15,7 @@
           <h2 class="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-ink leading-[0.9] mb-8">
             EL PRIMER SOPORTE DE LA EXPRESIÓN HUMANA
           </h2>
-          <div class="h-1 w-24 bg-brick mb-8" aria-hidden="true" />
+          <PaintStroke storage-key="about" width="6rem" height="6px" :droplets="2" :seed="31" class="mb-8" />
           <p class="text-ink/60 text-lg md:text-xl leading-relaxed max-w-xl">
             Puro Muro nace de una redundancia fonética que busca subrayar una verdad absoluta:
             el muro es el origen. Fue el primer lienzo, el soporte primigenio que albergó
