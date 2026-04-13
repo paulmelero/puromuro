@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
   ],
   devtools: { enabled: true },
-  compatibilityDate: '2024-04-03',
+  compatibilityDate: '2025-07-20',
   css: ['~/assets/css/main.css'],
   router: {
     options: {
