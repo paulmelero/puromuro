@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import wasm from 'vite-plugin-wasm';
+
 export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
@@ -16,9 +19,29 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth',
     },
   },
+  routeRules: {
+    '/': { prerender: true },
+  },
   vite: {
     optimizeDeps: {
       include: [],
     },
+    plugins: [wasm()],
+  },
+  experimental: {
+    inlineRouteRules: true,
+    granularCachedData: true,
+  },
+  nitro: {
+    preset: 'cloudflare_module',
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
+  },
+
+  // Modules
+  fonts: {
+    provider: 'google',
   },
 });
