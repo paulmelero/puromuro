@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const heroVisible = ref(false);
+const sectionRef = ref<HTMLElement | null>(null);
 
 onMounted(() => {
   setTimeout(() => {
@@ -10,18 +11,23 @@ onMounted(() => {
 
 <template>
   <section
+    ref="sectionRef"
     class="relative flex flex-col justify-end bg-navy overflow-hidden h-[calc(100vh-4rem)]"
   >
-    <!-- Giant background text — architectural scale -->
+    <!-- Animated brick cursor (desktop only, respects prefers-reduced-motion) -->
+    <BrickCursor :hero-ref="sectionRef" />
+
+    <!-- Background image -->
     <div
-      class="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+      class="absolute inset-0 pointer-events-none select-none"
       aria-hidden="true"
     >
-      <span
-        class="font-heading font-black text-[28vw] leading-[0.8] text-white/3 tracking-tighter"
-      >
-        MURO
-      </span>
+      <NuxtImg
+        src="/images/uploads/design/foto_fondo_headerbajo.avif"
+        alt=""
+        class="w-full h-full object-cover object-center md:object-right-bottom"
+        loading="eager"
+      />
     </div>
 
     <!-- Main content -->
