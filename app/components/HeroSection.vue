@@ -58,10 +58,12 @@ onMounted(() => {
       <!-- Paint stroke accent -->
       <div
         class="max-w-sm mb-6 md:mb-8 transition-all duration-700 delay-200 origin-left"
-        :class="heroVisible ? 'opacity-100' : 'opacity-0'"
+        :class="
+          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        "
       >
         <img
-          src="/images/uploads/design/adornos/Recurso%201.svg"
+          src="/images/uploads/design/adornos/Recurso_1.svg"
           alt=""
           aria-hidden="true"
           class="w-full h-auto"

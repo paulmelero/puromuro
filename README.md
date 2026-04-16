@@ -7,5 +7,5 @@
 - [x] Animated logo
 - [x] Animated brick
 - [x] Services..
-- [ ] Splashes
+- [-] Splashes
 - [ ] Gallery

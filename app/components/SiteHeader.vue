@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineLazyHydrationComponent } from '#imports';
-
 const LazyBrandLogo = defineLazyHydrationComponent(
   'mediaQuery',
   () => import('./BrandLogo.vue'),
