@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted, type Ref } from 'vue';
+import { ref, nextTick, onMounted, onUnmounted, type Ref } from 'vue';
 
 const FRAME_COUNT = 72;
 const FPS = 12; // 12 fps feels right for a hand-drawn spinning brick
@@ -105,9 +105,16 @@ export function useBrickAnimation(
     if (reducedMotion || !hasFinePointer) return;
 
     enabled = true;
-    const el = heroRef.value;
-    el?.addEventListener('mousemove', onMouseMove);
-    el?.addEventListener('mouseenter', onMouseEnter);
+
+    // Parent element refs (heroRef) are assigned via queuePostRenderEffect,
+    // which runs after child onMounted hooks in the same flush. nextTick defers
+    // until after the flush completes, so heroRef.value is guaranteed to be set.
+    nextTick(() => {
+      const el = heroRef.value;
+      if (!el) return;
+      el.addEventListener('mousemove', onMouseMove);
+      el.addEventListener('mouseenter', onMouseEnter);
+    });
   });
 
   onUnmounted(() => {

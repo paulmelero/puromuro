@@ -6,6 +6,6 @@
 - [x] Colors
 - [x] Animated logo
 - [x] Animated brick
-- [x] Services
+- [x] Services..
 - [ ] Splashes
 - [ ] Gallery
