@@ -2,20 +2,30 @@
 @plugin "daisyui";
 
 @theme {
-  /* Brand Colors */
-  --color-navy: oklab(0.27 -0.03 -0.02);
-  --color-navy-light: oklab(0.4 -0.04 -0.04);
-  --color-brick: oklab(0.6 0.14 0.11);
-  --color-orange: #f0782f;
+  /* ── PALETA PUROMURO ── */
+  --color-amarillo-fiesta: #ffdc00;
+  --color-naranja-solar: #f59a1b;
+  --color-baby-blue: #4bbdee;
+  --color-azul-lewis: #235364;
+  --color-arcilla: #a14822;
+  --color-azul-profundo: #12313c;
+  --color-naranja-fenix: #d24f24;
+  --color-negro: #13100d;
+
+  /* ── ALIASES SEMÁNTICOS (usados en los templates) ── */
+  --color-navy: var(--color-azul-profundo);
+  --color-navy-light: var(--color-azul-lewis);
+  --color-brick: var(--color-naranja-fenix);
+  --color-orange: var(--color-naranja-solar);
+  --color-ink: var(--color-negro);
   --color-warm-white: #f5f0eb;
   --color-warm-200: #e8e0d8;
   --color-warm-300: #d4c9be;
-  --color-ink: #0a0a0a;
 
   /* Typography */
   --font-heading: 'Montserrat', sans-serif;
-  --font-body: 'TT Hazelnuts Trial', 'Montserrat', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-body: 'Roboto Slab', serif;
+  --font-mono: monospace;
 }
 
 /* DaisyUI brutalist theme — zero radius, raw surfaces */
@@ -26,27 +36,27 @@
   --color-base-100: #f5f0eb;
   --color-base-200: #e8e0d8;
   --color-base-300: #d4c9be;
-  --color-base-content: #0a0a0a;
+  --color-base-content: #13100d;
 
-  --color-primary: oklab(0.27 -0.03 -0.02);
+  --color-primary: #12313c;
   --color-primary-content: #f5f0eb;
 
-  --color-secondary: oklab(0.6 0.14 0.11);
+  --color-secondary: #d24f24;
   --color-secondary-content: #ffffff;
 
-  --color-accent: #f0782f;
-  --color-accent-content: #ffffff;
+  --color-accent: #f59a1b;
+  --color-accent-content: #13100d;
 
-  --color-neutral: #0a0a0a;
+  --color-neutral: #13100d;
   --color-neutral-content: #f5f0eb;
 
-  --color-info: oklab(0.27 -0.03 -0.02);
-  --color-info-content: #f5f0eb;
-  --color-warning: #f0782f;
-  --color-warning-content: #0a0a0a;
-  --color-error: oklab(0.6 0.14 0.11);
+  --color-info: #4bbdee;
+  --color-info-content: #12313c;
+  --color-warning: #ffdc00;
+  --color-warning-content: #13100d;
+  --color-error: #d24f24;
   --color-error-content: #ffffff;
-  --color-success: oklab(0.27 -0.03 -0.02);
+  --color-success: #235364;
   --color-success-content: #f5f0eb;
 
   /* ZERO radius — brutalist */
