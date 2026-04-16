@@ -35,7 +35,7 @@ onMounted(async () => {
   <Transition name="brick-fade">
     <div
       v-show="isVisible"
-      class="absolute pointer-events-none z-[5]"
+      class="absolute pointer-events-none z-5"
       :style="{
         left: 0,
         top: 0,

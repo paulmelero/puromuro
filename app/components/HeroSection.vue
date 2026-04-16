@@ -25,7 +25,7 @@ onMounted(() => {
       <NuxtImg
         src="/images/uploads/design/foto_fondo_headerbajo.avif"
         alt=""
-        class="w-full h-full object-cover object-center md:object-right-bottom"
+        class="w-full h-full object-cover object-center md:object-bottom-right"
         loading="eager"
       />
     </div>
@@ -57,16 +57,14 @@ onMounted(() => {
 
       <!-- Paint stroke accent -->
       <div
-        class="max-w-xs mb-6 md:mb-8 transition-all duration-700 delay-200 origin-left"
+        class="max-w-sm mb-6 md:mb-8 transition-all duration-700 delay-200 origin-left"
         :class="heroVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'"
       >
-        <PaintStroke
-          storage-key="hero"
-          width="100%"
-          height="8px"
-          :droplets="3"
-          :seed="17"
-          :base-delay="1000"
+        <img
+          src="/images/uploads/design/adornos/Recurso%201.svg"
+          alt=""
+          aria-hidden="true"
+          class="w-full h-auto"
         />
       </div>
 
@@ -96,7 +94,7 @@ onMounted(() => {
 
       <!-- CTA — solid secondary color -->
       <div
-        class="mt-8 md:mt-10 transition-all duration-700 delay-[400ms]"
+        class="mt-8 md:mt-10 transition-all duration-700 delay-400"
         :class="
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         "
