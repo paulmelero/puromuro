@@ -69,21 +69,42 @@ async function handleSubmit() {
                 >Email</span
               >
               <a
-                href="mailto:info@puromuro.com"
+                href="mailto:puromuromurales@gmail.com"
                 class="text-warm-white hover:text-orange transition-colors no-underline"
               >
-                info@puromuro.com
+                puromuromurales@gmail.com
               </a>
             </div>
             <div>
               <span class="label-mono text-warm-white/30 block mb-1"
-                >Social</span
+                >Teléfono</span
               >
-              <NuxtLink
-                to="https://instagram.com/puromuro"
+              <a
+                href="tel:+34661495182"
                 class="text-warm-white hover:text-orange transition-colors no-underline"
               >
-                @puromuro
+                661 495 182
+              </a>
+            </div>
+            <div>
+              <span class="label-mono text-warm-white/30 block mb-1"
+                >Dirección</span
+              >
+              <span class="text-warm-white">
+                Calle Valle de Broto 6<br />Zaragoza 50015
+              </span>
+            </div>
+            <div>
+              <span class="label-mono text-warm-white/30 block mb-1"
+                >Instagram</span
+              >
+              <NuxtLink
+                to="https://instagram.com/puromuromurales"
+                class="text-warm-white hover:text-orange transition-colors no-underline"
+                target="_blank"
+                rel="noopener"
+              >
+                @puromuromurales
               </NuxtLink>
             </div>
           </div>
