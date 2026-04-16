@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import { defineLazyHydrationComponent } from '#imports';
+
+const LazyBrandLogo = defineLazyHydrationComponent(
+  'mediaQuery',
+  () => import('./BrandLogo.vue'),
+);
+const LazyAnimatedLogo = defineLazyHydrationComponent(
+  'mediaQuery',
+  () => import('./AnimatedLogo.vue'),
+);
+
 const navLinks = [
   { label: 'Inicio', href: '#' },
   { label: 'Nosotros', href: '#nosotros' },
@@ -23,7 +34,16 @@ function onLinkClick(href: string) {
     <div class="flex items-center justify-between px-6 md:px-10 h-16">
       <!-- Logo -->
       <NuxtLink to="/" class="block" aria-label="Puro Muro - Inicio">
-        <BrandLogo variant="brand" :show-subtitle="false" class="h-8" />
+        <LazyBrandLogo
+          hydrate-on-media-query="(max-width: 1023px)"
+          variant="brand"
+          :show-subtitle="false"
+          class="h-8 md:hidden"
+        />
+        <LazyAnimatedLogo
+          hydrate-on-media-query="(min-width: 1024px)"
+          class="h-8 hidden md:block"
+        />
       </NuxtLink>
 
       <!-- Desktop nav -->
