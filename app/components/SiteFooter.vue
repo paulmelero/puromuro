@@ -8,18 +8,18 @@
 
         <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
           <a
-            href="https://instagram.com"
+            href="https://instagram.com/puromuromurales"
             class="label-mono text-warm-white/40 hover:text-orange transition-colors no-underline"
             target="_blank"
             rel="noopener"
           >
-            Instagram
+            @puromuromurales
           </a>
           <a
-            href="mailto:info@puromuro.com"
+            href="mailto:puromuromurales@gmail.com"
             class="label-mono text-warm-white/40 hover:text-orange transition-colors no-underline"
           >
-            info@puromuro.com
+            puromuromurales@gmail.com
           </a>
         </div>
 
