@@ -23,7 +23,12 @@
             height="6px"
             :droplets="2"
             :seed="31"
+            class="mb-8"
           />
+          <p class="text-ink/60 text-lg md:text-xl leading-relaxed max-w-xl">
+            Puro Muro nace de una redundancia fonética que busca subrayar una
+            verdad absoluta: el muro es el origen.
+          </p>
         </div>
 
         <!-- Right column: detailed text -->
