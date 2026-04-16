@@ -8,21 +8,21 @@ const services = [
   },
   {
     num: '02',
-    title: 'Graffiti',
+    title: 'Rotulación a mano',
     description:
-      'Arte urbano profesional que transforma paredes en lienzos con identidad propia. Del boceto a la pared, con técnica y criterio.',
+      'Rótulos artesanales para comercios, escaparates y señalización. Letra viva que da carácter y personalidad a cualquier espacio.',
   },
   {
     num: '03',
-    title: 'Lettering',
+    title: 'Workshops',
     description:
-      'Lettering profesional para logotipos, señalización y branding. Utilizamos el tradicional arte del lettering para crear identidades visuales únicas.',
+      'Talleres de pintura mural, graffiti y lettering para todos los niveles. Aprendizaje directo con artistas en activo.',
   },
   {
     num: '04',
-    title: 'Tattoo',
+    title: 'Ilustración',
     description:
-      'Tattoos profesionales para personas que buscan expresar su personalidad con tinta en su piel.',
+      'Ilustración original para editoriales, marcas y proyectos creativos. Imágenes con identidad propia, hechas a mano.',
   },
 ];
 </script>
