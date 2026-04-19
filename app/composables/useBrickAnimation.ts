@@ -8,11 +8,15 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function getCenterPosition(rect: DOMRect) {
+  return { x: rect.width * 0.75, y: rect.height / 2 };
+}
+
 /**
  * Manages the spinning brick animation and mouse-follow logic.
  *
  * - Runs only on desktop (pointer: fine) and when prefers-reduced-motion is not set
- * - The brick is constrained to the right half of the hero section
+ * - Always visible by default at section center; follows cursor on hover; springs back on leave
  * - Position uses lerp for smooth non-linear easing
  * - onFrame callback fires on every frame change for direct DOM updates (no Vue reactivity)
  */
@@ -29,15 +33,7 @@ export function useBrickAnimation(
   let rafId = 0;
   let lastFrameTime = 0;
   let frame = 0;
-  let started = false;
   let enabled = false;
-
-  function constrainToZone(clientX: number, clientY: number, rect: DOMRect) {
-    return {
-      x: clamp(clientX - rect.left, rect.width * 0.5, rect.width - 60),
-      y: clamp(clientY - rect.top, 40, rect.height - 60),
-    };
-  }
 
   function loop(time: number) {
     rafId = requestAnimationFrame(loop);
@@ -57,44 +53,9 @@ export function useBrickAnimation(
   function onMouseMove(e: MouseEvent) {
     if (!heroRef.value) return;
     const rect = heroRef.value.getBoundingClientRect();
-    const relX = e.clientX - rect.left;
-
-    // Only show when mouse is in the right half of the hero
-    if (relX < rect.width * 0.5) {
-      if (isVisible.value) isVisible.value = false;
-      return;
-    }
-
-    const pos = constrainToZone(e.clientX, e.clientY, rect);
-    targetX = pos.x;
-    targetY = pos.y;
-
-    if (!isVisible.value) isVisible.value = true;
+    targetX = clamp(e.clientX - rect.left, rect.width * 0.5, rect.width - 60);
+    targetY = clamp(e.clientY - rect.top, 40, rect.height - 60);
   }
-
-  function onMouseEnter(e: MouseEvent) {
-    if (!heroRef.value) return;
-    const rect = heroRef.value.getBoundingClientRect();
-    const relX = e.clientX - rect.left;
-
-    if (relX >= rect.width * 0.5) {
-      const pos = constrainToZone(e.clientX, e.clientY, rect);
-      // Snap to position immediately — no lerp lag on first entry
-      x.value = pos.x;
-      y.value = pos.y;
-      targetX = pos.x;
-      targetY = pos.y;
-      isVisible.value = true;
-    }
-
-    // Start the rAF loop once and keep it running (brick stays spinning after leave)
-    if (!started) {
-      started = true;
-      rafId = requestAnimationFrame(loop);
-    }
-  }
-
-  // No onMouseLeave: brick stays visible at its last position when the mouse leaves the section
 
   onMounted(() => {
     const reducedMotion = window.matchMedia(
@@ -112,8 +73,17 @@ export function useBrickAnimation(
     nextTick(() => {
       const el = heroRef.value;
       if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const center = getCenterPosition(rect);
+      x.value = center.x;
+      y.value = center.y;
+      targetX = center.x;
+      targetY = center.y;
+      isVisible.value = true;
+
       el.addEventListener('mousemove', onMouseMove);
-      el.addEventListener('mouseenter', onMouseEnter);
+      rafId = requestAnimationFrame(loop);
     });
   });
 
@@ -122,7 +92,6 @@ export function useBrickAnimation(
     cancelAnimationFrame(rafId);
     const el = heroRef.value;
     el?.removeEventListener('mousemove', onMouseMove);
-    el?.removeEventListener('mouseenter', onMouseEnter);
   });
 
   return { x, y, isVisible };
