@@ -7,5 +7,6 @@
 - [x] Animated logo
 - [x] Animated brick
 - [x] Services..
-- [-] Splashes
-- [ ] Gallery
+- [x] Splashes
+- [x] Gallery
+- [x] Basic SEO

@@ -152,3 +152,43 @@ a {
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
+
+/* ── GALLERY VIEW TRANSITIONS ── */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    display: none;
+  }
+
+  ::view-transition-new(root) {
+    animation: none;
+  }
+
+  /* Header renders above the morphing gallery image during transitions */
+  ::view-transition-group(site-header) {
+    z-index: 50;
+  }
+
+  ::view-transition-group(gallery-1),
+  ::view-transition-group(gallery-2),
+  ::view-transition-group(gallery-3),
+  ::view-transition-group(gallery-4),
+  ::view-transition-group(gallery-5),
+  ::view-transition-group(gallery-6),
+  ::view-transition-group(gallery-7),
+  ::view-transition-group(gallery-8) {
+    animation-duration: 350ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ── LIGHTBOX CAPTION TRANSITION ── */
+
+.lightbox-caption-enter-active {
+  transition: opacity 250ms ease-out, transform 250ms ease-out;
+}
+
+.lightbox-caption-enter-from {
+  opacity: 0;
+  transform: translateY(0.5rem);
+}

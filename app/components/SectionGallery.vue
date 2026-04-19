@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const items = [
+import type { LightboxItem } from '~/composables/useLightbox';
+
+const items: LightboxItem[] = [
   {
     id: 1,
     src: '/images/uploads/13.jpg',
@@ -67,6 +69,22 @@ const brickRows = computed(() => {
   }
   return rows;
 });
+
+const {
+  selectedItem,
+  captionVisible,
+  thumbnailVTName,
+  setDialogRef,
+  openLightbox,
+  closeLightbox,
+  navigate,
+} = useLightbox();
+
+function onDialogKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') navigate(1, items);
+  if (e.key === 'ArrowLeft') navigate(-1, items);
+}
 </script>
 
 <template>
@@ -96,16 +114,19 @@ const brickRows = computed(() => {
           class="grid gap-[6px]"
           :class="row.offset ? 'grid-cols-2' : 'grid-cols-3'"
         >
-          <div
+          <button
             v-for="item in row.items"
             :key="item.id"
-            class="group relative aspect-3/5 md:aspect-5/3 bg-navy overflow-hidden cursor-pointer"
+            class="group relative aspect-3/5 md:aspect-5/3 bg-navy overflow-hidden cursor-pointer text-left"
+            :aria-label="`Ver imagen: ${item.label}, ${item.location}`"
+            @click="openLightbox(item)"
           >
             <!-- Image -->
             <img
               :src="item.src"
               :alt="item.label"
-              class="absolute inset-0 w-full h-full object-cover"
+              class="absolute inset-0 w-full h-full object-cover user-select-none"
+              :style="{ viewTransitionName: thumbnailVTName(item.id) }"
             />
 
             <!-- Dark overlay on hover -->
@@ -132,9 +153,78 @@ const brickRows = computed(() => {
             >
               {{ String(item.id).padStart(2, '0') }}
             </span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <Teleport to="body">
+    <dialog
+      :ref="setDialogRef"
+      class="modal z-40 !top-[4.1875rem]"
+      @keydown="onDialogKeydown"
+    >
+      <div
+        class="modal-box w-11/12 max-w-6xl bg-ink p-0 relative overflow-hidden"
+      >
+        <img
+          v-if="selectedItem"
+          :src="selectedItem.src"
+          :alt="selectedItem.label"
+          class="w-fit object-contain max-h-[85vh] rounded-lg mx-auto"
+          :style="{ viewTransitionName: `gallery-${selectedItem.id}` }"
+        />
+
+        <!-- Caption + controls bar — animated in after the image morph finishes -->
+        <Transition name="lightbox-caption">
+          <div
+            v-show="captionVisible"
+            class="absolute bottom-0 left-0 right-0 p-4 bg-ink/80 flex items-end justify-between gap-4"
+          >
+            <div class="flex flex-col">
+              <span class="label-mono text-warm-white/50">{{
+                selectedItem?.location
+              }}</span>
+              <span
+                class="font-heading text-sm font-bold text-warm-white uppercase tracking-wide"
+                >{{ selectedItem?.label }}</span
+              >
+            </div>
+
+            <div class="flex items-center gap-2">
+              <!-- Prev -->
+              <button
+                class="btn btn-sm btn-ghost text-warm-white"
+                aria-label="Imagen anterior"
+                @click="navigate(-1, items)"
+              >
+                ←
+              </button>
+              <!-- Next -->
+              <button
+                class="btn btn-sm btn-ghost text-warm-white"
+                aria-label="Imagen siguiente"
+                @click="navigate(1, items)"
+              >
+                →
+              </button>
+              <!-- Close -->
+              <button
+                class="btn btn-sm btn-ghost text-warm-white"
+                aria-label="Cerrar"
+                @click="closeLightbox"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        </Transition>
+      </div>
+
+      <!-- Backdrop — click to close -->
+      <div class="modal-backdrop" @click="closeLightbox" />
+    </dialog>
+  </Teleport>
 </template>

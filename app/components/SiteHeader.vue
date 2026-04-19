@@ -18,7 +18,10 @@ const navLinks = [
 
 const mobileMenuOpen = ref(false);
 
+const { closeLightbox, selectedItem } = useLightbox();
+
 function onLinkClick(href: string) {
+  if (selectedItem.value) closeLightbox();
   if (href === '#') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -31,7 +34,7 @@ function onLinkClick(href: string) {
   >
     <div class="flex items-center justify-between px-6 md:px-10 h-16">
       <!-- Logo -->
-      <NuxtLink to="/" class="block" aria-label="Puro Muro - Inicio">
+      <NuxtLink to="/" class="block" aria-label="Puro Muro - Inicio" @click="onLinkClick('#')">
         <LazyBrandLogo
           hydrate-on-media-query="(max-width: 1023px)"
           variant="brand"
@@ -140,5 +143,9 @@ function onLinkClick(href: string) {
 .menu-enter-from,
 .menu-leave-to {
   opacity: 0;
+}
+
+header {
+  view-transition-name: site-header;
 }
 </style>

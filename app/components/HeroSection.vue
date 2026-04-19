@@ -11,8 +11,9 @@ onMounted(() => {
 
 <template>
   <section
+    id="hero"
     ref="sectionRef"
-    class="relative flex flex-col justify-end bg-navy overflow-hidden h-[calc(100vh-4rem)]"
+    class="relative flex flex-col justify-end bg-navy overflow-hidden h-[calc(100vh-4.1875rem)]"
   >
     <!-- Animated brick cursor (desktop only, respects prefers-reduced-motion) -->
     <BrickCursor :hero-ref="sectionRef" />
