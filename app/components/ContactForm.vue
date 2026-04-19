@@ -201,19 +201,13 @@ async function handleSubmit() {
               />
             </div>
 
-            <button
+            <CTAButton
               type="submit"
-              class="relative inline-block bg-brick text-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-10 py-4 hover:bg-orange [--drip-color:var(--color-brick)] hover:[--drip-color:var(--color-orange)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+              class="disabled:cursor-not-allowed"
               :disabled="status === 'sending'"
             >
               {{ status === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
-              <PaintDrips
-                storage-key="cta-contact"
-                color="brick"
-                :count="2"
-                :seed="89"
-              />
-            </button>
+            </CTAButton>
           </form>
         </div>
       </div>

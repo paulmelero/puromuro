@@ -70,12 +70,6 @@
 
 /* ── GLOBAL RESETS ── */
 
-*,
-*::before,
-*::after {
-  border-radius: 0 !important;
-}
-
 body {
   font-family: var(--font-body);
   background-color: var(--color-warm-white);

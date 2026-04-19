@@ -101,19 +101,7 @@ onMounted(() => {
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         "
       >
-        <NuxtLink
-          to="#contacto"
-          class="relative inline-block bg-brick text-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 hover:bg-orange [--drip-color:var(--color-brick)] hover:[--drip-color:var(--color-orange)] transition-colors no-underline"
-        >
-          Háblanos de tu proyecto
-          <PaintDrips
-            storage-key="cta-hero"
-            color="brick"
-            :count="2"
-            :seed="71"
-            :base-delay="1200"
-          />
-        </NuxtLink>
+        <CTAButton to="#contacto"> Háblanos de tu proyecto </CTAButton>
       </div>
     </div>
 
