@@ -18,11 +18,8 @@
             EL PRIMER SOPORTE DE LA EXPRESIÓN HUMANA
           </h2>
           <PaintStroke
-            storage-key="about"
             width="6rem"
             height="6px"
-            :droplets="2"
-            :seed="31"
             class="mb-8"
           />
           <p class="text-ink/60 text-lg md:text-xl leading-relaxed max-w-xl">

@@ -34,7 +34,12 @@ function onLinkClick(href: string) {
   >
     <div class="flex items-center justify-between px-6 md:px-10 h-16">
       <!-- Logo -->
-      <NuxtLink to="/" class="block" aria-label="Puro Muro - Inicio" @click="onLinkClick('#')">
+      <NuxtLink
+        to="/"
+        class="block"
+        aria-label="Puro Muro - Inicio"
+        @click="onLinkClick('#')"
+      >
         <LazyBrandLogo
           hydrate-on-media-query="(max-width: 1023px)"
           variant="brand"

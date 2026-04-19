@@ -50,11 +50,8 @@ async function handleSubmit() {
             HABLEMOS
           </h2>
           <PaintStroke
-            storage-key="contact"
             width="5rem"
             height="6px"
-            :droplets="2"
-            :seed="53"
             class="mb-8"
           />
           <p class="text-warm-white/50 mb-10 max-w-sm">
