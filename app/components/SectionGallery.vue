@@ -99,7 +99,7 @@ const brickRows = computed(() => {
           <div
             v-for="item in row.items"
             :key="item.id"
-            class="group relative aspect-[5/3] bg-navy overflow-hidden cursor-pointer"
+            class="group relative aspect-3/5 md:aspect-5/3 bg-navy overflow-hidden cursor-pointer"
           >
             <!-- Image -->
             <img
