@@ -7,6 +7,7 @@
   "name": "puromuro",
   "main": "./.output/server/index.mjs",
   "compatibility_date": "2025-07-20",
+  "account_id": "82d74223c7d57d7a2458d3382eacbeaa",
 
   "observability": {
     "enabled": true,
