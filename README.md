@@ -13,7 +13,7 @@
 
 ---
 
-- [ ] Google maps docs
+- [x] Google maps docs
 - [ ] Works page
 - [ ] New gallery layout with CTA
 - [ ] Contact page
