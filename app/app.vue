@@ -24,18 +24,21 @@ useHead({
         'Puro Muro es un colectivo de arte urbano que se dedica a la pintura mural y el arte urbano.',
     },
     { name: 'apple-mobile-web-app-title', content: 'Puro Muro' },
-    { name: 'og:title', content: 'Puro Muro' },
+    { property: 'og:title', content: 'Puro Muro' },
     {
-      name: 'og:description',
+      property: 'og:description',
       content:
         'Puro Muro es un colectivo de arte urbano que se dedica a la pintura mural y el arte urbano.',
     },
-    { name: 'og:url', content: 'https://www.puromuro.com' },
-    { name: 'og:type', content: 'website' },
-    { name: 'og:locale', content: 'es_ES' },
-    { name: 'og:site_name', content: 'Puro Muro' },
+    { property: 'og:url', content: 'https://www.puromuro.com' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'es_ES' },
+    { property: 'og:site_name', content: 'Puro Muro' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'og:image', content: 'https://www.puromuro.com/images/cover.jpg' },
+    {
+      property: 'og:image',
+      content: 'https://www.puromuro.com/images/cover.jpg',
+    },
     {
       name: 'twitter:image',
       content: 'https://www.puromuro.com/images/cover.jpg',

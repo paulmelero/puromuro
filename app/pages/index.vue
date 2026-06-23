@@ -4,6 +4,6 @@
     <SectionAbout />
     <SectionGallery />
     <SectionServices />
-    <ContactForm />
+    <SectionContact />
   </div>
 </template>

@@ -13,6 +13,17 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   compatibilityDate: '2025-07-20',
+  runtimeConfig: {
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY,
+    },
+    resend: {
+      apiKey: process.env.RESEND_API_KEY,
+    },
+    public: {
+      turnstileSiteKey: process.env.TURNSTILE_SITE_KEY,
+    },
+  },
   css: ['~/assets/css/main.css'],
   router: {
     options: {

@@ -102,7 +102,7 @@ onMounted(() => {
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         "
       >
-        <CTAButton to="#contacto"> Háblanos de tu proyecto </CTAButton>
+        <CTAButton to="/contacto"> Háblanos de tu proyecto </CTAButton>
       </div>
     </div>
 

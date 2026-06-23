@@ -9,20 +9,23 @@ const LazyAnimatedLogo = defineLazyHydrationComponent(
 );
 
 const navLinks = [
-  { label: 'Inicio', href: '#' },
-  { label: 'Nosotros', href: '#nosotros' },
-  { label: 'Galería', href: '#galeria' },
-  { label: 'Servicios', href: '#servicios' },
-  { label: 'Contacto', href: '#contacto' },
+  { label: 'Inicio', href: '/' },
+  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Galería', href: '/#galeria' },
+  { label: 'Servicios', href: '/#servicios' },
+  { label: 'Contacto', href: '/contacto' },
 ];
 
 const mobileMenuOpen = ref(false);
 
+const route = useRoute();
 const { closeLightbox, selectedItem } = useLightbox();
 
 function onLinkClick(href: string) {
   if (selectedItem.value) closeLightbox();
-  if (href === '#') {
+  // Navigating to "/" while already on the homepage is a router no-op,
+  // so scroll to top manually; from other routes "/" navigates normally.
+  if (href === '/' && route.path === '/') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
@@ -38,7 +41,7 @@ function onLinkClick(href: string) {
         to="/"
         class="block"
         aria-label="Puro Muro - Inicio"
-        @click="onLinkClick('#')"
+        @click="onLinkClick('/')"
       >
         <LazyBrandLogo
           hydrate-on-media-query="(max-width: 1023px)"

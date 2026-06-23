@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import { NuxtLink } from '#components';
-
-const props = defineProps<{
+defineProps<{
   to?: string;
 }>();
 
-const hasTo = computed(() => !!props.to);
-const Component = computed(() => {
-  return hasTo.value ? NuxtLink : 'button';
-});
+const classes =
+  'cursor-pointer inline-block bg-brick text-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 hover:bg-orange [--drip-color:var(--color-brick)] hover:[--drip-color:var(--color-orange)] transition-colors no-underline rounded-md';
 </script>
 
 <template>
-  <component
-    v-bind="hasTo ? { to: props.to } : {}"
-    class="cursor-pointer inline-block bg-brick text-white font-heading text-xs font-bold tracking-[0.2em] uppercase px-8 py-4 hover:bg-orange [--drip-color:var(--color-brick)] hover:[--drip-color:var(--color-orange)] transition-colors no-underline rounded-md"
-  >
+  <NuxtLink v-if="to" :to="to" :class="classes">
     <slot />
-  </component>
+  </NuxtLink>
+  <button v-else :class="classes">
+    <slot />
+  </button>
 </template>
