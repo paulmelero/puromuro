@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
 
-  // Nuxt Studio — in-app CMS at /_studio. Editors log in with GitHub and
+  // Nuxt Studio — in-app CMS at /admin (see `route` below). Editors log in with GitHub and
   // commits land on paulmelero/puromuro; Cloudflare auto-builds on push.
   // Credentials come from env STUDIO_GITHUB_CLIENT_ID / STUDIO_GITHUB_CLIENT_SECRET
   // (v1.7.0 reads these exact names) — set as Cloudflare secrets in prod, .env in dev.
