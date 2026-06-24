@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { data: home } = useHomeContent();
+const hero = computed(() => home.value?.hero);
+
 const heroVisible = ref(false);
 const sectionRef = ref<HTMLElement | null>(null);
 
@@ -40,9 +43,7 @@ onMounted(() => {
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         "
       >
-        <span class="label-mono text-warm-white/40"
-          >Colectivo de arte urbano</span
-        >
+        <span class="label-mono text-warm-white/40">{{ hero?.eyebrow }}</span>
       </div>
 
       <!-- Title block — brand logo (smaller) -->
@@ -79,9 +80,9 @@ onMounted(() => {
         "
       >
         <p
-          class="font-heading text-lg md:text-xl font-bold tracking-[0.15em] text-warm-white uppercase"
+          class="font-heading text-lg md:text-xl font-bold tracking-[0.15em] text-warm-white uppercase whitespace-pre-line"
         >
-          El muro es<br />el origen
+          {{ hero?.title }}
         </p>
 
         <!-- Vertical divider (desktop) -->
@@ -90,8 +91,7 @@ onMounted(() => {
         <p
           class="text-warm-white/50 text-sm md:text-base leading-relaxed max-w-sm"
         >
-          Pintura mural, graffiti y arte urbano. Transformamos espacios con arte
-          que cuenta historias.
+          {{ hero?.subtitle }}
         </p>
       </div>
 
@@ -102,7 +102,7 @@ onMounted(() => {
           heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         "
       >
-        <CTAButton to="/contacto"> Háblanos de tu proyecto </CTAButton>
+        <CTAButton to="/contacto"> {{ hero?.ctaLabel }} </CTAButton>
       </div>
     </div>
 

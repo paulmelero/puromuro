@@ -1,30 +1,6 @@
 <script setup lang="ts">
-const services = [
-  {
-    num: '01',
-    title: 'Pintura Mural',
-    description:
-      'Murales artísticos de gran formato para fachadas, interiores y espacios comerciales. Cada muro es un proyecto único adaptado a su contexto.',
-  },
-  {
-    num: '02',
-    title: 'Rotulación a mano',
-    description:
-      'Rótulos artesanales para comercios, escaparates y señalización. Letra viva que da carácter y personalidad a cualquier espacio.',
-  },
-  {
-    num: '03',
-    title: 'Workshops',
-    description:
-      'Talleres de pintura mural, graffiti y lettering para todos los niveles. Aprendizaje directo con artistas en activo.',
-  },
-  {
-    num: '04',
-    title: 'Ilustración',
-    description:
-      'Ilustración original para editoriales, marcas y proyectos creativos. Imágenes con identidad propia, hechas a mano.',
-  },
-];
+const { data: home } = useHomeContent();
+const services = computed(() => home.value?.services);
 </script>
 
 <template>
@@ -32,18 +8,17 @@ const services = [
     section-id="servicios"
     bg="warm-white"
     index="03"
-    label="Servicios"
+    :label="services?.label"
   >
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-8 mb-16">
       <div class="lg:col-span-5">
-        <SectionTitle class="text-ink lg:text-7xl">
-          LO QUE<br />HACEMOS
+        <SectionTitle class="text-ink lg:text-7xl whitespace-pre-line">
+          {{ services?.title }}
         </SectionTitle>
       </div>
       <div class="lg:col-span-5 lg:col-start-7 flex items-end">
         <p class="text-ink/50 max-w-sm">
-          Ofrecemos soluciones completas de pintura mural y arte urbano. Cada
-          proyecto empieza escuchando.
+          {{ services?.intro }}
         </p>
       </div>
     </div>
@@ -51,7 +26,7 @@ const services = [
     <!-- Services list — editorial, numbered -->
     <div class="border-t-[3px] border-ink">
       <div
-        v-for="service in services"
+        v-for="service in services?.items"
         :key="service.num"
         class="group border-b-[3px] border-ink"
       >
