@@ -26,6 +26,10 @@ export default defineNuxtConfig({
       branch: 'main',
       private: false,
     },
+    i18n: {
+      defaultLocale: 'es',
+    },
+    route: '/admin',
   },
   compatibilityDate: '2025-07-20',
   runtimeConfig: {
