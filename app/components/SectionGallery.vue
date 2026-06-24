@@ -1,66 +1,24 @@
 <script setup lang="ts">
 import type { LightboxItem } from '~/composables/useLightbox';
 
-const items: LightboxItem[] = [
-  {
-    id: 1,
-    src: '/images/uploads/13.jpg',
-    label: 'Mural exterior',
-    location: 'Valencia',
-  },
-  {
-    id: 2,
-    src: '/images/uploads/14.jpg',
-    label: 'Fachada comercial',
-    location: 'Madrid',
-  },
-  {
-    id: 3,
-    src: '/images/uploads/15.jpg',
-    label: 'Fachada de gran formato',
-    location: 'Barcelona',
-  },
-  {
-    id: 4,
-    src: '/images/uploads/16.jpg',
-    label: 'Graffiti urbano',
-    location: 'Sevilla',
-  },
-  {
-    id: 5,
-    src: '/images/uploads/17.jpg',
-    label: 'Mural comunitario',
-    location: 'Bilbao',
-  },
-  {
-    id: 6,
-    src: '/images/uploads/18.jpg',
-    label: 'Decoración mural',
-    location: 'Valencia',
-  },
-  {
-    id: 7,
-    src: '/images/uploads/19.jpg',
-    label: 'Parking artístico',
-    location: 'Málaga',
-  },
-  {
-    id: 8,
-    src: '/images/uploads/20.jpg',
-    label: 'Festival urbano',
-    location: 'Zaragoza',
-  },
-];
+const { data: home } = useHomeContent();
+const gallery = computed(() => home.value?.gallery);
+
+// Gallery items come from content/home.yml; derive a stable id from order.
+const items = computed<LightboxItem[]>(() =>
+  (gallery.value?.items ?? []).map((item, i) => ({ id: i + 1, ...item })),
+);
 
 // Build rows of bricks — alternating 3/2 pattern like a real brick wall
 const brickRows = computed(() => {
-  const rows: { items: typeof items; offset: boolean }[] = [];
+  const rows: { items: LightboxItem[]; offset: boolean }[] = [];
   let idx = 0;
   let isOffset = false;
+  const list = items.value;
 
-  while (idx < items.length) {
+  while (idx < list.length) {
     const count = isOffset ? 2 : 3;
-    const rowItems = items.slice(idx, idx + count);
+    const rowItems = list.slice(idx, idx + count);
     if (rowItems.length > 0) {
       rows.push({ items: rowItems, offset: isOffset });
     }
@@ -82,16 +40,21 @@ const {
 
 function onDialogKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') navigate(1, items);
-  if (e.key === 'ArrowLeft') navigate(-1, items);
+  if (e.key === 'ArrowRight') navigate(1, items.value);
+  if (e.key === 'ArrowLeft') navigate(-1, items.value);
 }
 </script>
 
 <template>
-  <LandingSection section-id="galeria" bg="ink" index="02" label="Galería">
-    <SectionTitle class="text-warm-white mb-4"> TRABAJOS </SectionTitle>
+  <LandingSection
+    section-id="galeria"
+    bg="ink"
+    index="02"
+    :label="gallery?.label"
+  >
+    <SectionTitle class="text-warm-white mb-4"> {{ gallery?.title }} </SectionTitle>
     <p class="text-warm-white/40 mb-12 md:mb-16 max-w-md">
-      Una selección de nuestros proyectos de pintura mural y arte urbano.
+      {{ gallery?.intro }}
     </p>
 
     <!-- Brick wall grid — rows alternate 3 and 2 items, offset like real bricks -->
