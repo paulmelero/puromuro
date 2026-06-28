@@ -51,6 +51,7 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
+    '/contacto': { prerender: true },
   },
   vite: {
     optimizeDeps: {
