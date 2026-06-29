@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     'nuxt-studio',
   ],
   devtools: { enabled: true },
+  devServer: {
+    port: 9280,
+  },
 
   // Nuxt Studio — in-app CMS at /admin (see `route` below). Editors log in with GitHub and
   // commits land on paulmelero/puromuro; Cloudflare auto-builds on push.

@@ -90,7 +90,7 @@ async function handleSubmit() {
       </p>
 
       <!-- Contact details -->
-      <div class="space-y-4 text-warm-white/60">
+      <div class="hidden lg:block space-y-4 text-warm-white/60">
         <div>
           <span class="label-mono text-warm-white/30 block mb-1">Email</span>
           <a
@@ -220,7 +220,7 @@ async function handleSubmit() {
 
         <div
           :key="captchaKey"
-          class="cf-turnstile [&:not(:empty)]:mb-6"
+          class="cf-turnstile not-empty:mb-6"
           :data-sitekey="siteKey"
         />
 
@@ -232,6 +232,49 @@ async function handleSubmit() {
           {{ status === 'sending' ? 'Enviando...' : 'Enviar mensaje' }}
         </CTAButton>
       </form>
+
+      <!-- Contact details after form mobile -->
+      <div class="lg:hidden space-y-4 text-warm-white/60 mt-24">
+        <div>
+          <span class="label-mono text-warm-white/30 block mb-1">Email</span>
+          <a
+            href="mailto:puromuromurales@gmail.com"
+            class="text-warm-white hover:text-orange transition-colors no-underline"
+          >
+            puromuromurales@gmail.com
+          </a>
+        </div>
+        <div>
+          <span class="label-mono text-warm-white/30 block mb-1">Teléfono</span>
+          <a
+            href="tel:+34661495182"
+            class="text-warm-white hover:text-orange transition-colors no-underline"
+          >
+            661 495 182
+          </a>
+        </div>
+        <div>
+          <span class="label-mono text-warm-white/30 block mb-1"
+            >Dirección</span
+          >
+          <span class="text-warm-white">
+            Calle Valle de Broto 6<br />Zaragoza 50015
+          </span>
+        </div>
+        <div>
+          <span class="label-mono text-warm-white/30 block mb-1"
+            >Instagram</span
+          >
+          <NuxtLink
+            to="https://instagram.com/puromuromurales"
+            class="text-warm-white hover:text-orange transition-colors no-underline"
+            target="_blank"
+            rel="noopener"
+          >
+            @puromuromurales
+          </NuxtLink>
+        </div>
+      </div>
     </div>
   </div>
 </template>
